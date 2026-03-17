@@ -50,4 +50,10 @@ public class StudentService {
         }
         studentRepository.deleteById(id);
     }
+
+    public Student getStudentByEmail(String email) {
+        return studentRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("Student not found with email: " + email));
+    }
 }
+

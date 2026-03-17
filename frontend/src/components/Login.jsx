@@ -8,6 +8,7 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [role, setRole] = useState('STUDENT');
   const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
   const [loading, setLoading] = useState(false);
   const { login, register } = useAuth();
   const navigate = useNavigate();
@@ -15,15 +16,19 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
+    setSuccess('');
     setLoading(true);
 
     try {
       if (isLogin) {
         await login(username, password);
+        navigate('/dashboard');
       } else {
         await register(username, password, role);
+        setIsLogin(true);
+        setSuccess('Registration successful! Please sign in.');
+        setPassword('');
       }
-      navigate('/dashboard');
     } catch (err) {
       setError(err.response?.data?.error || 'An error occurred. Please try again.');
     } finally {
@@ -43,19 +48,20 @@ const Login = () => {
         <div className="tab-switcher">
           <button
             className={`tab-btn ${isLogin ? 'active' : ''}`}
-            onClick={() => { setIsLogin(true); setError(''); }}
+            onClick={() => { setIsLogin(true); setError(''); setSuccess(''); }}
           >
             Sign In
           </button>
           <button
             className={`tab-btn ${!isLogin ? 'active' : ''}`}
-            onClick={() => { setIsLogin(false); setError(''); }}
+            onClick={() => { setIsLogin(false); setError(''); setSuccess(''); }}
           >
             Register
           </button>
         </div>
 
         {error && <div className="alert error">⚠️ {error}</div>}
+        {success && <div className="alert success">✅ {success}</div>}
 
         <form onSubmit={handleSubmit}>
           <div className="form-group">

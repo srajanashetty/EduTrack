@@ -25,8 +25,8 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (username, password) => {
     const response = await authAPI.login({ username, password });
-    const { token, username: uname, role, message } = response.data;
-    const userData = { username: uname, role, token };
+    const { token, username: uname, role, message, studentId } = response.data;
+    const userData = { username: uname, role, token, studentId: studentId || null };
     localStorage.setItem('token', token);
     localStorage.setItem('user', JSON.stringify(userData));
     setUser(userData);
@@ -35,11 +35,7 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (username, password, role) => {
     const response = await authAPI.register({ username, password, role });
-    const { token, username: uname, role: userRole, message } = response.data;
-    const userData = { username: uname, role: userRole, token };
-    localStorage.setItem('token', token);
-    localStorage.setItem('user', JSON.stringify(userData));
-    setUser(userData);
+    // Do not auto-login: only return the response so they must sign in explicitly.
     return response.data;
   };
 
@@ -53,6 +49,11 @@ export const AuthProvider = ({ children }) => {
     return user?.role === role;
   };
 
+  const isAdmin = () => user?.role === 'ADMIN';
+  const isTeacher = () => user?.role === 'TEACHER';
+  const isStudent = () => user?.role === 'STUDENT';
+  const isAdminOrTeacher = () => user?.role === 'ADMIN' || user?.role === 'TEACHER';
+
   const value = {
     user,
     login,
@@ -61,6 +62,10 @@ export const AuthProvider = ({ children }) => {
     loading,
     isAuthenticated: !!user,
     hasRole,
+    isAdmin,
+    isTeacher,
+    isStudent,
+    isAdminOrTeacher,
   };
 
   return (

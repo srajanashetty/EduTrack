@@ -7,6 +7,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,6 +19,8 @@ public class StudentController {
 
     @Autowired
     private StudentService studentService;
+
+    // ---- ADMIN / TEACHER only ----
 
     @PostMapping
     @PreAuthorize("hasAnyRole('ADMIN', 'TEACHER')")
@@ -70,6 +73,20 @@ public class StudentController {
         } catch (Exception e) {
             return ResponseEntity.badRequest()
                     .body(Map.of("error", e.getMessage()));
+        }
+    }
+
+    // ---- STUDENT self-lookup: username == student email ----
+
+    @GetMapping("/me")
+    @PreAuthorize("hasAnyRole('ADMIN', 'TEACHER', 'STUDENT')")
+    public ResponseEntity<?> getMe(Authentication authentication) {
+        String username = authentication.getName();
+        try {
+            Student student = studentService.getStudentByEmail(username);
+            return ResponseEntity.ok(student);
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
         }
     }
 }

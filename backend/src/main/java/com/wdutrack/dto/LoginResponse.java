@@ -14,4 +14,5 @@ public class LoginResponse {
     private String username;
     private String role;
     private String message;
+    private Long studentId; // populated only when role == STUDENT
 }

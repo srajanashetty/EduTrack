@@ -4,20 +4,31 @@ import { useAuth } from '../context/AuthContext';
 import { FiCheckSquare, FiCalendar } from 'react-icons/fi';
 
 const AttendanceManagement = () => {
-  const { user } = useAuth();
+  const { user, isAdminOrTeacher, isStudent } = useAuth();
   const [students, setStudents] = useState([]);
-  const [attendanceRecords, setAttendanceRecords] = useState([]);
-  const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]);
   const [attendanceMap, setAttendanceMap] = useState({});
+  const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]);
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState({ type: '', text: '' });
-  const [viewMode, setViewMode] = useState('mark'); // 'mark' or 'view'
+  const [viewMode, setViewMode] = useState(isAdminOrTeacher() ? 'mark' : 'view');
+
+  // View-records state
   const [selectedStudentId, setSelectedStudentId] = useState('');
   const [studentAttendance, setStudentAttendance] = useState([]);
   const [studentStats, setStudentStats] = useState(null);
 
   useEffect(() => {
-    fetchStudents();
+    if (isAdminOrTeacher()) {
+      fetchStudents();
+    } else if (isStudent()) {
+      const sid = user?.studentId;
+      if (sid) {
+        setSelectedStudentId(String(sid));
+        loadStudentAttendance(sid);
+      } else {
+        setLoading(false);
+      }
+    }
   }, []);
 
   const fetchStudents = async () => {
@@ -28,7 +39,22 @@ const AttendanceManagement = () => {
       res.data.forEach((s) => { map[s.id] = 'PRESENT'; });
       setAttendanceMap(map);
     } catch (err) {
-      console.error('Error:', err);
+      console.error('Error fetching students:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const loadStudentAttendance = async (id) => {
+    try {
+      const [recordsRes, statsRes] = await Promise.all([
+        attendanceAPI.getByStudent(id),
+        attendanceAPI.getStudentStats(id),
+      ]);
+      setStudentAttendance(recordsRes.data);
+      setStudentStats(statsRes.data);
+    } catch (err) {
+      showMessage('error', 'Failed to fetch attendance records');
     } finally {
       setLoading(false);
     }
@@ -68,16 +94,7 @@ const AttendanceManagement = () => {
 
   const handleViewStudentAttendance = async () => {
     if (!selectedStudentId) return;
-    try {
-      const [recordsRes, statsRes] = await Promise.all([
-        attendanceAPI.getByStudent(selectedStudentId),
-        attendanceAPI.getStudentStats(selectedStudentId),
-      ]);
-      setStudentAttendance(recordsRes.data);
-      setStudentStats(statsRes.data);
-    } catch (err) {
-      showMessage('error', 'Failed to fetch attendance');
-    }
+    await loadStudentAttendance(selectedStudentId);
   };
 
   if (loading) {
@@ -89,6 +106,86 @@ const AttendanceManagement = () => {
     );
   }
 
+  /* ===================== STUDENT VIEW ===================== */
+  if (isStudent()) {
+    return (
+      <div>
+        <div className="page-header">
+          <div>
+            <h1>My Attendance</h1>
+            <p>View your attendance records and statistics</p>
+          </div>
+        </div>
+
+        {message.text && <div className={`alert ${message.type}`}>{message.text}</div>}
+
+        {studentStats && (
+          <div className="stats-grid" style={{ marginBottom: '1.5rem' }}>
+            <div className="stat-card">
+              <div className="stat-icon primary"><FiCalendar /></div>
+              <div className="stat-info">
+                <h4>{studentStats.totalDays}</h4>
+                <p>Total Days</p>
+              </div>
+            </div>
+            <div className="stat-card">
+              <div className="stat-icon success"><FiCheckSquare /></div>
+              <div className="stat-info">
+                <h4>{studentStats.presentDays}</h4>
+                <p>Present Days</p>
+              </div>
+            </div>
+            <div className="stat-card">
+              <div className="stat-icon danger">✘</div>
+              <div className="stat-info">
+                <h4>{studentStats.absentDays}</h4>
+                <p>Absent Days</p>
+              </div>
+            </div>
+            <div className="stat-card">
+              <div className="stat-icon accent">%</div>
+              <div className="stat-info">
+                <h4>{studentStats.attendancePercentage}%</h4>
+                <p>Attendance</p>
+              </div>
+            </div>
+          </div>
+        )}
+
+        <div className="wdu-card">
+          <div className="card-header">
+            <h3><FiCheckSquare style={{ marginRight: '0.5rem' }} /> Attendance Records</h3>
+          </div>
+          {studentAttendance.length > 0 ? (
+            <div className="wdu-table-container">
+              <table className="wdu-table">
+                <thead>
+                  <tr><th>#</th><th>Date</th><th>Status</th></tr>
+                </thead>
+                <tbody>
+                  {studentAttendance.map((record, idx) => (
+                    <tr key={record.id}>
+                      <td>{idx + 1}</td>
+                      <td>{record.date}</td>
+                      <td><span className={`badge ${record.status.toLowerCase()}`}>{record.status}</span></td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ) : (
+            <div className="empty-state">
+              <div className="empty-icon">📋</div>
+              <h3>No Records Yet</h3>
+              <p>Your attendance hasn't been recorded yet.</p>
+            </div>
+          )}
+        </div>
+      </div>
+    );
+  }
+
+  /* ===================== ADMIN / TEACHER VIEW ===================== */
   return (
     <div>
       <div className="page-header">
@@ -96,24 +193,27 @@ const AttendanceManagement = () => {
           <h1>Attendance Management</h1>
           <p>Mark and view student attendance records</p>
         </div>
-        {(user?.role === 'ADMIN' || user?.role === 'TEACHER') && (
-          <div className="tab-switcher" style={{ maxWidth: '280px', marginBottom: 0 }}>
-            <button className={`tab-btn ${viewMode === 'mark' ? 'active' : ''}`} onClick={() => setViewMode('mark')}>Mark Attendance</button>
-            <button className={`tab-btn ${viewMode === 'view' ? 'active' : ''}`} onClick={() => setViewMode('view')}>View Records</button>
-          </div>
-        )}
+        <div className="tab-switcher" style={{ maxWidth: '280px', marginBottom: 0 }}>
+          <button className={`tab-btn ${viewMode === 'mark' ? 'active' : ''}`} onClick={() => setViewMode('mark')}>Mark Attendance</button>
+          <button className={`tab-btn ${viewMode === 'view' ? 'active' : ''}`} onClick={() => setViewMode('view')}>View Records</button>
+        </div>
       </div>
 
       {message.text && <div className={`alert ${message.type}`}>{message.text}</div>}
 
-      {viewMode === 'mark' && (user?.role === 'ADMIN' || user?.role === 'TEACHER') ? (
+      {viewMode === 'mark' ? (
+        /* MARK ATTENDANCE — ADMIN only can submit; TEACHER sees read-only */
         <div className="wdu-card">
           <div className="card-header">
             <h3><FiCalendar style={{ marginRight: '0.5rem' }} /> Mark Attendance</h3>
             <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
               <input type="date" className="form-input" style={{ width: 'auto' }} value={selectedDate} onChange={(e) => setSelectedDate(e.target.value)} />
-              <button className="btn-success" onClick={() => handleMarkAll('PRESENT')} style={{ fontSize: '0.8rem' }}>All Present</button>
-              <button className="btn-danger" onClick={() => handleMarkAll('ABSENT')} style={{ fontSize: '0.8rem' }}>All Absent</button>
+              {user?.role === 'ADMIN' && (
+                <>
+                  <button className="btn-success" onClick={() => handleMarkAll('PRESENT')} style={{ fontSize: '0.8rem' }}>All Present</button>
+                  <button className="btn-danger" onClick={() => handleMarkAll('ABSENT')} style={{ fontSize: '0.8rem' }}>All Absent</button>
+                </>
+              )}
             </div>
           </div>
 
@@ -122,14 +222,7 @@ const AttendanceManagement = () => {
               <div className="wdu-table-container">
                 <table className="wdu-table">
                   <thead>
-                    <tr>
-                      <th>#</th>
-                      <th>Student Name</th>
-                      <th>Department</th>
-                      <th>Year</th>
-                      <th>Section</th>
-                      <th>Status</th>
-                    </tr>
+                    <tr><th>#</th><th>Student Name</th><th>Department</th><th>Year</th><th>Section</th><th>Status</th></tr>
                   </thead>
                   <tbody>
                     {students.map((student, idx) => (
@@ -142,8 +235,12 @@ const AttendanceManagement = () => {
                         <td>
                           <button
                             className={`badge ${attendanceMap[student.id] === 'PRESENT' ? 'present' : 'absent'}`}
-                            onClick={() => toggleAttendance(student.id)}
-                            style={{ cursor: 'pointer', border: 'none', padding: '0.4rem 1rem', fontSize: '0.8rem' }}
+                            onClick={() => user?.role === 'ADMIN' && toggleAttendance(student.id)}
+                            style={{
+                              cursor: user?.role === 'ADMIN' ? 'pointer' : 'default',
+                              border: 'none', padding: '0.4rem 1rem', fontSize: '0.8rem',
+                              opacity: user?.role === 'ADMIN' ? 1 : 0.8
+                            }}
                           >
                             {attendanceMap[student.id]}
                           </button>
@@ -153,11 +250,13 @@ const AttendanceManagement = () => {
                   </tbody>
                 </table>
               </div>
-              <div style={{ marginTop: '1.5rem', display: 'flex', justifyContent: 'flex-end' }}>
-                <button className="btn-primary" onClick={handleSubmitAttendance} style={{ width: 'auto', padding: '0.7rem 2rem' }}>
-                  <FiCheckSquare style={{ marginRight: '0.5rem' }} /> Submit Attendance
-                </button>
-              </div>
+              {user?.role === 'ADMIN' && (
+                <div style={{ marginTop: '1.5rem', display: 'flex', justifyContent: 'flex-end' }}>
+                  <button className="btn-primary" onClick={handleSubmitAttendance} style={{ width: 'auto', padding: '0.7rem 2rem' }}>
+                    <FiCheckSquare style={{ marginRight: '0.5rem' }} /> Submit Attendance
+                  </button>
+                </div>
+              )}
             </>
           ) : (
             <div className="empty-state">
@@ -168,15 +267,14 @@ const AttendanceManagement = () => {
           )}
         </div>
       ) : (
+        /* VIEW RECORDS */
         <div className="wdu-card">
           <div className="card-header">
             <h3><FiCheckSquare style={{ marginRight: '0.5rem' }} /> Student Attendance Records</h3>
             <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
               <select className="form-select" style={{ width: 'auto', minWidth: '200px' }} value={selectedStudentId} onChange={(e) => setSelectedStudentId(e.target.value)}>
                 <option value="">Select Student</option>
-                {students.map((s) => (
-                  <option key={s.id} value={s.id}>{s.name}</option>
-                ))}
+                {students.map((s) => <option key={s.id} value={s.id}>{s.name}</option>)}
               </select>
               <button className="btn-primary" onClick={handleViewStudentAttendance} style={{ width: 'auto', padding: '0.6rem 1.5rem' }}>View</button>
             </div>
@@ -186,31 +284,19 @@ const AttendanceManagement = () => {
             <div className="stats-grid" style={{ marginTop: '1rem' }}>
               <div className="stat-card">
                 <div className="stat-icon primary"><FiCalendar /></div>
-                <div className="stat-info">
-                  <h4>{studentStats.totalDays}</h4>
-                  <p>Total Days</p>
-                </div>
+                <div className="stat-info"><h4>{studentStats.totalDays}</h4><p>Total Days</p></div>
               </div>
               <div className="stat-card">
                 <div className="stat-icon success"><FiCheckSquare /></div>
-                <div className="stat-info">
-                  <h4>{studentStats.presentDays}</h4>
-                  <p>Present Days</p>
-                </div>
+                <div className="stat-info"><h4>{studentStats.presentDays}</h4><p>Present Days</p></div>
               </div>
               <div className="stat-card">
                 <div className="stat-icon danger">✘</div>
-                <div className="stat-info">
-                  <h4>{studentStats.absentDays}</h4>
-                  <p>Absent Days</p>
-                </div>
+                <div className="stat-info"><h4>{studentStats.absentDays}</h4><p>Absent Days</p></div>
               </div>
               <div className="stat-card">
                 <div className="stat-icon accent">%</div>
-                <div className="stat-info">
-                  <h4>{studentStats.attendancePercentage}%</h4>
-                  <p>Attendance</p>
-                </div>
+                <div className="stat-info"><h4>{studentStats.attendancePercentage}%</h4><p>Attendance</p></div>
               </div>
             </div>
           )}
@@ -219,11 +305,7 @@ const AttendanceManagement = () => {
             <div className="wdu-table-container" style={{ marginTop: '1rem' }}>
               <table className="wdu-table">
                 <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>Date</th>
-                    <th>Status</th>
-                  </tr>
+                  <tr><th>#</th><th>Date</th><th>Status</th></tr>
                 </thead>
                 <tbody>
                   {studentAttendance.map((record, idx) => (
@@ -237,9 +319,7 @@ const AttendanceManagement = () => {
               </table>
             </div>
           ) : selectedStudentId ? (
-            <div className="empty-state">
-              <p>No attendance records found for this student</p>
-            </div>
+            <div className="empty-state"><p>No attendance records found for this student</p></div>
           ) : null}
         </div>
       )}

@@ -44,10 +44,12 @@ export const authAPI = {
 export const studentAPI = {
   getAll: () => api.get('/students'),
   getById: (id) => api.get(`/students/${id}`),
+  getMe: () => api.get('/students/me'),
   create: (data) => api.post('/students', data),
   update: (id, data) => api.put(`/students/${id}`, data),
   delete: (id) => api.delete(`/students/${id}`),
 };
+
 
 // ===== Attendance APIs =====
 export const attendanceAPI = {
