@@ -208,7 +208,7 @@ const AttendanceManagement = () => {
             <h3><FiCalendar style={{ marginRight: '0.5rem' }} /> Mark Attendance</h3>
             <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
               <input type="date" className="form-input" style={{ width: 'auto' }} value={selectedDate} onChange={(e) => setSelectedDate(e.target.value)} />
-              {user?.role === 'ADMIN' && (
+              {(user?.role === 'ADMIN' || user?.role === 'TEACHER') && (
                 <>
                   <button className="btn-success" onClick={() => handleMarkAll('PRESENT')} style={{ fontSize: '0.8rem' }}>All Present</button>
                   <button className="btn-danger" onClick={() => handleMarkAll('ABSENT')} style={{ fontSize: '0.8rem' }}>All Absent</button>
@@ -235,14 +235,15 @@ const AttendanceManagement = () => {
                         <td>
                           <button
                             className={`badge ${attendanceMap[student.id] === 'PRESENT' ? 'present' : 'absent'}`}
-                            onClick={() => user?.role === 'ADMIN' && toggleAttendance(student.id)}
+                            onClick={() => toggleAttendance(student.id)}
                             style={{
-                              cursor: user?.role === 'ADMIN' ? 'pointer' : 'default',
+                              cursor: 'pointer',
                               border: 'none', padding: '0.4rem 1rem', fontSize: '0.8rem',
-                              opacity: user?.role === 'ADMIN' ? 1 : 0.8
+                              transition: 'all 0.2s ease'
                             }}
+                            title="Click to toggle Present / Absent"
                           >
-                            {attendanceMap[student.id]}
+                            {attendanceMap[student.id] === 'PRESENT' ? '✅ PRESENT' : '❌ ABSENT'}
                           </button>
                         </td>
                       </tr>
@@ -250,7 +251,7 @@ const AttendanceManagement = () => {
                   </tbody>
                 </table>
               </div>
-              {user?.role === 'ADMIN' && (
+              {(user?.role === 'ADMIN' || user?.role === 'TEACHER') && (
                 <div style={{ marginTop: '1.5rem', display: 'flex', justifyContent: 'flex-end' }}>
                   <button className="btn-primary" onClick={handleSubmitAttendance} style={{ width: 'auto', padding: '0.7rem 2rem' }}>
                     <FiCheckSquare style={{ marginRight: '0.5rem' }} /> Submit Attendance
