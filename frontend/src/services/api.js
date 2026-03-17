@@ -76,4 +76,11 @@ export const analyticsAPI = {
   getLowAttendance: () => api.get('/analytics/low-attendance'),
 };
 
+// ===== Announcements APIs =====
+export const announcementsAPI = {
+  getAll: () => api.get('/announcements'),
+  create: (data) => api.post('/announcements', data),
+  delete: (id) => api.delete(`/announcements/${id}`),
+};
+
 export default api;
