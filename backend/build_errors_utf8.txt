@@ -1,0 +1,323 @@
+﻿[INFO] Error stacktraces are turned on.
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -----------------------< com.edutrack:edutrack >------------------------
+[INFO] Building edutrack 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.3.2:clean (default-clean) @ edutrack ---
+[INFO] Deleting C:\Users\sraja\OneDrive\Desktop\student\backend\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ edutrack ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 0 resource from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ edutrack ---
+[INFO] Changes detected - recompiling the module! :source
+[INFO] Compiling 33 source files with javac [debug release 21] to target\classes
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/EduTrackApplication.java:[7,8] class edutrackApplication is public, should be declared in a file named edutrackApplication.java
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/MarksService.java:[23,61] cannot find symbol
+  symbol:   method getStudentId()
+  location: variable request of type com.edutrack.dto.MarksRequest
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/MarksService.java:[25,64] cannot find symbol
+  symbol:   method getStudentId()
+  location: variable request of type com.edutrack.dto.MarksRequest
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/MarksService.java:[27,28] cannot find symbol
+  symbol:   method builder()
+  location: class com.edutrack.entity.Marks
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/MarksService.java:[29,33] cannot find symbol
+  symbol:   method getSubject()
+  location: variable request of type com.edutrack.dto.MarksRequest
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/MarksService.java:[30,31] cannot find symbol
+  symbol:   method getMarks()
+  location: variable request of type com.edutrack.dto.MarksRequest
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/entity/User.java:[18,8] com.edutrack.entity.User is not abstract and does not override abstract method getUsername() in org.springframework.security.core.userdetails.UserDetails
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/StudentService.java:[18,34] cannot find symbol
+  symbol:   method builder()
+  location: class com.edutrack.entity.Student
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/StudentService.java:[19,26] cannot find symbol
+  symbol:   method getName()
+  location: variable dto of type com.edutrack.dto.StudentDTO
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/StudentService.java:[20,27] cannot find symbol
+  symbol:   method getEmail()
+  location: variable dto of type com.edutrack.dto.StudentDTO
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/StudentService.java:[21,32] cannot find symbol
+  symbol:   method getDepartment()
+  location: variable dto of type com.edutrack.dto.StudentDTO
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/StudentService.java:[22,26] cannot find symbol
+  symbol:   method getYear()
+  location: variable dto of type com.edutrack.dto.StudentDTO
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/StudentService.java:[23,29] cannot find symbol
+  symbol:   method getSection()
+  location: variable dto of type com.edutrack.dto.StudentDTO
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/StudentService.java:[39,28] cannot find symbol
+  symbol:   method getName()
+  location: variable dto of type com.edutrack.dto.StudentDTO
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/StudentService.java:[40,29] cannot find symbol
+  symbol:   method getEmail()
+  location: variable dto of type com.edutrack.dto.StudentDTO
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/StudentService.java:[41,34] cannot find symbol
+  symbol:   method getDepartment()
+  location: variable dto of type com.edutrack.dto.StudentDTO
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/StudentService.java:[42,28] cannot find symbol
+  symbol:   method getYear()
+  location: variable dto of type com.edutrack.dto.StudentDTO
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/StudentService.java:[43,31] cannot find symbol
+  symbol:   method getSection()
+  location: variable dto of type com.edutrack.dto.StudentDTO
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/AuthService.java:[43,17] cannot find symbol
+  symbol:   method getRole()
+  location: variable user of type com.edutrack.entity.User
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/AuthService.java:[44,71] cannot find symbol
+  symbol:   method getUsername()
+  location: variable user of type com.edutrack.entity.User
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/AuthService.java:[45,28] invalid method reference
+  cannot find symbol
+    symbol:   method getId()
+    location: class com.edutrack.entity.Student
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/AuthService.java:[50,64] cannot find symbol
+  symbol:   method getUsername()
+  location: variable request of type com.edutrack.dto.LoginRequest
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/AuthService.java:[50,87] cannot find symbol
+  symbol:   method getPassword()
+  location: variable request of type com.edutrack.dto.LoginRequest
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/AuthService.java:[52,58] cannot find symbol
+  symbol:   method getUsername()
+  location: variable request of type com.edutrack.dto.LoginRequest
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/AuthService.java:[57,29] cannot find symbol
+  symbol:   method builder()
+  location: class com.edutrack.dto.LoginResponse
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/AuthService.java:[59,31] cannot find symbol
+  symbol:   method getUsername()
+  location: variable user of type com.edutrack.entity.User
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/AuthService.java:[60,27] cannot find symbol
+  symbol:   method getRole()
+  location: variable user of type com.edutrack.entity.User
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/AuthService.java:[67,52] cannot find symbol
+  symbol:   method getUsername()
+  location: variable request of type com.edutrack.dto.RegisterRequest
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/AuthService.java:[71,25] cannot find symbol
+  symbol:   method builder()
+  location: class com.edutrack.entity.User
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/AuthService.java:[72,34] cannot find symbol
+  symbol:   method getUsername()
+  location: variable request of type com.edutrack.dto.RegisterRequest
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/AuthService.java:[73,57] cannot find symbol
+  symbol:   method getPassword()
+  location: variable request of type com.edutrack.dto.RegisterRequest
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/AuthService.java:[74,43] cannot find symbol
+  symbol:   method getRole()
+  location: variable request of type com.edutrack.dto.RegisterRequest
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/AuthService.java:[81,29] cannot find symbol
+  symbol:   method builder()
+  location: class com.edutrack.dto.LoginResponse
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/AuthService.java:[83,31] cannot find symbol
+  symbol:   method getUsername()
+  location: variable user of type com.edutrack.entity.User
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/AuthService.java:[84,27] cannot find symbol
+  symbol:   method getRole()
+  location: variable user of type com.edutrack.entity.User
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/AttendanceService.java:[25,61] cannot find symbol
+  symbol:   method getStudentId()
+  location: variable request of type com.edutrack.dto.AttendanceRequest
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/AttendanceService.java:[27,64] cannot find symbol
+  symbol:   method getStudentId()
+  location: variable request of type com.edutrack.dto.AttendanceRequest
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/AttendanceService.java:[29,43] cannot find symbol
+  symbol:   method builder()
+  location: class com.edutrack.entity.Attendance
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/AttendanceService.java:[31,30] cannot find symbol
+  symbol:   method getDate()
+  location: variable request of type com.edutrack.dto.AttendanceRequest
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/AttendanceService.java:[32,32] cannot find symbol
+  symbol:   method getStatus()
+  location: variable request of type com.edutrack.dto.AttendanceRequest
+[INFO] 40 errors 
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  2.708 s
+[INFO] Finished at: 2026-03-17T18:48:06+05:30
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.11.0:compile (default-compile) on project edutrack: Compilation failure: Compilation failure: 
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/EduTrackApplication.java:[7,8] class edutrackApplication is public, should be declared in a file named edutrackApplication.java
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/MarksService.java:[23,61] cannot find symbol
+[ERROR]   symbol:   method getStudentId()
+[ERROR]   location: variable request of type com.edutrack.dto.MarksRequest
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/MarksService.java:[25,64] cannot find symbol
+[ERROR]   symbol:   method getStudentId()
+[ERROR]   location: variable request of type com.edutrack.dto.MarksRequest
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/MarksService.java:[27,28] cannot find symbol
+[ERROR]   symbol:   method builder()
+[ERROR]   location: class com.edutrack.entity.Marks
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/MarksService.java:[29,33] cannot find symbol
+[ERROR]   symbol:   method getSubject()
+[ERROR]   location: variable request of type com.edutrack.dto.MarksRequest
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/MarksService.java:[30,31] cannot find symbol
+[ERROR]   symbol:   method getMarks()
+[ERROR]   location: variable request of type com.edutrack.dto.MarksRequest
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/entity/User.java:[18,8] com.edutrack.entity.User is not abstract and does not override abstract method getUsername() in org.springframework.security.core.userdetails.UserDetails
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/StudentService.java:[18,34] cannot find symbol
+[ERROR]   symbol:   method builder()
+[ERROR]   location: class com.edutrack.entity.Student
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/StudentService.java:[19,26] cannot find symbol
+[ERROR]   symbol:   method getName()
+[ERROR]   location: variable dto of type com.edutrack.dto.StudentDTO
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/StudentService.java:[20,27] cannot find symbol
+[ERROR]   symbol:   method getEmail()
+[ERROR]   location: variable dto of type com.edutrack.dto.StudentDTO
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/StudentService.java:[21,32] cannot find symbol
+[ERROR]   symbol:   method getDepartment()
+[ERROR]   location: variable dto of type com.edutrack.dto.StudentDTO
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/StudentService.java:[22,26] cannot find symbol
+[ERROR]   symbol:   method getYear()
+[ERROR]   location: variable dto of type com.edutrack.dto.StudentDTO
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/StudentService.java:[23,29] cannot find symbol
+[ERROR]   symbol:   method getSection()
+[ERROR]   location: variable dto of type com.edutrack.dto.StudentDTO
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/StudentService.java:[39,28] cannot find symbol
+[ERROR]   symbol:   method getName()
+[ERROR]   location: variable dto of type com.edutrack.dto.StudentDTO
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/StudentService.java:[40,29] cannot find symbol
+[ERROR]   symbol:   method getEmail()
+[ERROR]   location: variable dto of type com.edutrack.dto.StudentDTO
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/StudentService.java:[41,34] cannot find symbol
+[ERROR]   symbol:   method getDepartment()
+[ERROR]   location: variable dto of type com.edutrack.dto.StudentDTO
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/StudentService.java:[42,28] cannot find symbol
+[ERROR]   symbol:   method getYear()
+[ERROR]   location: variable dto of type com.edutrack.dto.StudentDTO
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/StudentService.java:[43,31] cannot find symbol
+[ERROR]   symbol:   method getSection()
+[ERROR]   location: variable dto of type com.edutrack.dto.StudentDTO
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/AuthService.java:[43,17] cannot find symbol
+[ERROR]   symbol:   method getRole()
+[ERROR]   location: variable user of type com.edutrack.entity.User
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/AuthService.java:[44,71] cannot find symbol
+[ERROR]   symbol:   method getUsername()
+[ERROR]   location: variable user of type com.edutrack.entity.User
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/AuthService.java:[45,28] invalid method reference
+[ERROR]   cannot find symbol
+[ERROR]     symbol:   method getId()
+[ERROR]     location: class com.edutrack.entity.Student
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/AuthService.java:[50,64] cannot find symbol
+[ERROR]   symbol:   method getUsername()
+[ERROR]   location: variable request of type com.edutrack.dto.LoginRequest
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/AuthService.java:[50,87] cannot find symbol
+[ERROR]   symbol:   method getPassword()
+[ERROR]   location: variable request of type com.edutrack.dto.LoginRequest
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/AuthService.java:[52,58] cannot find symbol
+[ERROR]   symbol:   method getUsername()
+[ERROR]   location: variable request of type com.edutrack.dto.LoginRequest
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/AuthService.java:[57,29] cannot find symbol
+[ERROR]   symbol:   method builder()
+[ERROR]   location: class com.edutrack.dto.LoginResponse
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/AuthService.java:[59,31] cannot find symbol
+[ERROR]   symbol:   method getUsername()
+[ERROR]   location: variable user of type com.edutrack.entity.User
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/AuthService.java:[60,27] cannot find symbol
+[ERROR]   symbol:   method getRole()
+[ERROR]   location: variable user of type com.edutrack.entity.User
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/AuthService.java:[67,52] cannot find symbol
+[ERROR]   symbol:   method getUsername()
+[ERROR]   location: variable request of type com.edutrack.dto.RegisterRequest
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/AuthService.java:[71,25] cannot find symbol
+[ERROR]   symbol:   method builder()
+[ERROR]   location: class com.edutrack.entity.User
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/AuthService.java:[72,34] cannot find symbol
+[ERROR]   symbol:   method getUsername()
+[ERROR]   location: variable request of type com.edutrack.dto.RegisterRequest
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/AuthService.java:[73,57] cannot find symbol
+[ERROR]   symbol:   method getPassword()
+[ERROR]   location: variable request of type com.edutrack.dto.RegisterRequest
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/AuthService.java:[74,43] cannot find symbol
+[ERROR]   symbol:   method getRole()
+[ERROR]   location: variable request of type com.edutrack.dto.RegisterRequest
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/AuthService.java:[81,29] cannot find symbol
+[ERROR]   symbol:   method builder()
+[ERROR]   location: class com.edutrack.dto.LoginResponse
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/AuthService.java:[83,31] cannot find symbol
+[ERROR]   symbol:   method getUsername()
+[ERROR]   location: variable user of type com.edutrack.entity.User
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/AuthService.java:[84,27] cannot find symbol
+[ERROR]   symbol:   method getRole()
+[ERROR]   location: variable user of type com.edutrack.entity.User
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/AttendanceService.java:[25,61] cannot find symbol
+[ERROR]   symbol:   method getStudentId()
+[ERROR]   location: variable request of type com.edutrack.dto.AttendanceRequest
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/AttendanceService.java:[27,64] cannot find symbol
+[ERROR]   symbol:   method getStudentId()
+[ERROR]   location: variable request of type com.edutrack.dto.AttendanceRequest
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/AttendanceService.java:[29,43] cannot find symbol
+[ERROR]   symbol:   method builder()
+[ERROR]   location: class com.edutrack.entity.Attendance
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/AttendanceService.java:[31,30] cannot find symbol
+[ERROR]   symbol:   method getDate()
+[ERROR]   location: variable request of type com.edutrack.dto.AttendanceRequest
+[ERROR] /C:/Users/sraja/OneDrive/Desktop/student/backend/src/main/java/com/edutrack/service/AttendanceService.java:[32,32] cannot find symbol
+[ERROR]   symbol:   method getStatus()
+[ERROR]   location: variable request of type com.edutrack.dto.AttendanceRequest
+[ERROR] -> [Help 1]
+org.apache.maven.lifecycle.LifecycleExecutionException: Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.11.0:compile (default-compile) on project edutrack: Compilation failure
+    at org.apache.maven.lifecycle.internal.MojoExecutor.doExecute2 (MojoExecutor.java:333)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.doExecute (MojoExecutor.java:316)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.execute (MojoExecutor.java:212)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.execute (MojoExecutor.java:174)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.access$000 (MojoExecutor.java:75)
+    at org.apache.maven.lifecycle.internal.MojoExecutor$1.run (MojoExecutor.java:162)
+    at org.apache.maven.plugin.DefaultMojosExecutionStrategy.execute (DefaultMojosExecutionStrategy.java:39)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.execute (MojoExecutor.java:159)
+    at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject (LifecycleModuleBuilder.java:105)
+    at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject (LifecycleModuleBuilder.java:73)
+    at org.apache.maven.lifecycle.internal.builder.singlethreaded.SingleThreadedBuilder.build (SingleThreadedBuilder.java:53)
+    at org.apache.maven.lifecycle.internal.LifecycleStarter.execute (LifecycleStarter.java:118)
+    at org.apache.maven.DefaultMaven.doExecute (DefaultMaven.java:261)
+    at org.apache.maven.DefaultMaven.doExecute (DefaultMaven.java:173)
+    at org.apache.maven.DefaultMaven.execute (DefaultMaven.java:101)
+    at org.apache.maven.cli.MavenCli.execute (MavenCli.java:919)
+    at org.apache.maven.cli.MavenCli.doMain (MavenCli.java:285)
+    at org.apache.maven.cli.MavenCli.main (MavenCli.java:207)
+    at jdk.internal.reflect.DirectMethodHandleAccessor.invoke (DirectMethodHandleAccessor.java:103)
+    at java.lang.reflect.Method.invoke (Method.java:580)
+    at org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced (Launcher.java:255)
+    at org.codehaus.plexus.classworlds.launcher.Launcher.launch (Launcher.java:201)
+    at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode (Launcher.java:361)
+    at org.codehaus.plexus.classworlds.launcher.Launcher.main (Launcher.java:314)
+Caused by: org.apache.maven.plugin.compiler.CompilationFailureException: Compilation failure
+    at org.apache.maven.plugin.compiler.AbstractCompilerMojo.execute (AbstractCompilerMojo.java:1212)
+    at org.apache.maven.plugin.compiler.CompilerMojo.execute (CompilerMojo.java:193)
+    at org.apache.maven.plugin.DefaultBuildPluginManager.executeMojo (DefaultBuildPluginManager.java:126)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.doExecute2 (MojoExecutor.java:328)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.doExecute (MojoExecutor.java:316)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.execute (MojoExecutor.java:212)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.execute (MojoExecutor.java:174)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.access$000 (MojoExecutor.java:75)
+    at org.apache.maven.lifecycle.internal.MojoExecutor$1.run (MojoExecutor.java:162)
+    at org.apache.maven.plugin.DefaultMojosExecutionStrategy.execute (DefaultMojosExecutionStrategy.java:39)
+    at org.apache.maven.lifecycle.internal.MojoExecutor.execute (MojoExecutor.java:159)
+    at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject (LifecycleModuleBuilder.java:105)
+    at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject (LifecycleModuleBuilder.java:73)
+    at org.apache.maven.lifecycle.internal.builder.singlethreaded.SingleThreadedBuilder.build (SingleThreadedBuilder.java:53)
+    at org.apache.maven.lifecycle.internal.LifecycleStarter.execute (LifecycleStarter.java:118)
+    at org.apache.maven.DefaultMaven.doExecute (DefaultMaven.java:261)
+    at org.apache.maven.DefaultMaven.doExecute (DefaultMaven.java:173)
+    at org.apache.maven.DefaultMaven.execute (DefaultMaven.java:101)
+    at org.apache.maven.cli.MavenCli.execute (MavenCli.java:919)
+    at org.apache.maven.cli.MavenCli.doMain (MavenCli.java:285)
+    at org.apache.maven.cli.MavenCli.main (MavenCli.java:207)
+    at jdk.internal.reflect.DirectMethodHandleAccessor.invoke (DirectMethodHandleAccessor.java:103)
+    at java.lang.reflect.Method.invoke (Method.java:580)
+    at org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced (Launcher.java:255)
+    at org.codehaus.plexus.classworlds.launcher.Launcher.launch (Launcher.java:201)
+    at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode (Launcher.java:361)
+    at org.codehaus.plexus.classworlds.launcher.Launcher.main (Launcher.java:314)
+[ERROR] 
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

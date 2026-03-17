@@ -11,10 +11,10 @@
         <relativePath/>
     </parent>
 
-    <groupId>com.wdutrack</groupId>
-    <artifactId>wdutrack</artifactId>
+    <groupId>com.edutrack</groupId>
+    <artifactId>edutrack</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>WduTrack</name>
+    <name>edutrack</name>
     <description>Student Performance and Attendance Analytics System</description>
 
     <properties>

@@ -1,8 +1,8 @@
-# WduTrack – Student Performance and Attendance Analytics System
+# edutrack – Student Performance and Attendance Analytics System
 
 A full-stack web application for educational institutions to track student attendance, manage marks, and generate performance analytics dashboards.
 
-![WduTrack](https://img.shields.io/badge/WduTrack-v1.0-6366f1?style=for-the-badge)
+![edutrack](https://img.shields.io/badge/edutrack-v1.0-6366f1?style=for-the-badge)
 ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.2.3-6DB33F?style=for-the-badge&logo=springboot)
 ![React](https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react)
 ![MySQL](https://img.shields.io/badge/MySQL-8.0-4479A1?style=for-the-badge&logo=mysql)
@@ -48,8 +48,8 @@ A full-stack web application for educational institutions to track student atten
 student/
 ├── backend/
 │   ├── pom.xml
-│   └── src/main/java/com/wdutrack/
-│       ├── WduTrackApplication.java
+│   └── src/main/java/com/edutrack/
+│       ├── edutrackApplication.java
 │       ├── config/
 │       │   ├── JwtAuthFilter.java
 │       │   ├── JwtUtil.java
@@ -127,7 +127,7 @@ student/
 ### 1. Database Setup
 
 ```sql
-CREATE DATABASE wdutrack_db;
+CREATE DATABASE edutrack_db;
 ```
 
 ### 2. Backend Setup
@@ -167,7 +167,7 @@ You can set these environment variables instead of editing `application.properti
 ```bash
 set DB_HOST=localhost
 set DB_PORT=3306
-set DB_NAME=wdutrack_db
+set DB_NAME=edutrack_db
 set DB_USERNAME=root
 set DB_PASSWORD=your_password
 set JWT_SECRET=your_jwt_secret_key

@@ -1,4 +1,4 @@
-# WduTrack - How to Run
+# edutrack - How to Run
 
 This project consists of a **Spring Boot Backend** and a **React Frontend**. Follow these steps to start both.
 
@@ -22,7 +22,7 @@ Because the `lombok` dependency does not currently support Java 25 (which is the
    ```powershell
    $env:JAVA_HOME="C:\Users\sraja\OneDrive\Desktop\student\backend\jdk-21.0.2"; mvn spring-boot:run
    ```
-4. Wait for it to say `Started WduTrackApplication in X seconds` on port `8080`. Leave this terminal open!
+4. Wait for it to say `Started edutrackApplication in X seconds` on port `8080`. Leave this terminal open!
 
 ---
 

@@ -41,7 +41,7 @@ const Login = () => {
       <div className="login-card">
         <div className="logo-section">
           <div className="logo-icon">W</div>
-          <h2>WduTrack</h2>
+          <h2>edutrack</h2>
           <p className="subtitle">Student Performance & Attendance Analytics</p>
         </div>
 
