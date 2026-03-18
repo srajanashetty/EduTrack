@@ -106,42 +106,25 @@ body {
   left: 0;
   display: flex;
   flex-direction: column;
-  padding: 2rem 1.5rem;
+  padding: 1.5rem 1rem;
   z-index: 1000;
-  overflow-y: auto;
+  box-shadow: 4px 0 10px rgba(0,0,0,0.2);
+  border-right: 1px solid rgba(255,255,255,0.05);
+}
+
+.wdu-sidebar .sidebar-top {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .wdu-sidebar .brand {
   display: flex;
   align-items: center;
-  gap: 0.8rem;
+  gap: 1rem;
   text-decoration: none;
   margin-bottom: 2.5rem;
-  padding-left: 0.5rem;
-}
-
-.wdu-sidebar .brand-icon {
-  width: 32px;
-  height: 32px;
-  background: var(--primary);
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.1rem;
-  font-weight: 800;
-  color: white;
-}
-
-.wdu-sidebar .brand-text {
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: white;
-}
-
-.wdu-sidebar .sidebar-top {
-  display: flex;
-  flex-direction: column;
+  padding: 0 0.5rem;
 }
 
 .wdu-sidebar .nav-links {
@@ -154,14 +137,15 @@ body {
 .wdu-sidebar .nav-link {
   color: var(--sidebar-text-muted);
   text-decoration: none;
-  padding: 0.8rem 1rem;
+  padding: 0.9rem 1.1rem;
   border-radius: 12px;
-  font-size: 0.95rem;
-  font-weight: 500;
-  transition: all var(--transition-fast);
+  font-size: 0.92rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1.1rem;
+  margin: 0.15rem 0;
 }
 
 .wdu-sidebar .nav-link svg {
@@ -178,79 +162,18 @@ body {
   color: white;
 }
 
-.wdu-sidebar .user-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.5rem;
+.wdu-sidebar .sidebar-bottom {
   margin-top: auto;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 1.5rem;
 }
 
-.pro-upgrade-card {
-  background: linear-gradient(180deg, rgba(43, 181, 137, 0.15) 0%, rgba(43, 181, 137, 0.08) 100%);
-  border: 1px solid rgba(43, 181, 137, 0.2);
-  border-radius: 16px;
-  padding: 1.5rem;
-  text-align: center;
-  width: 100%;
+/* Scrollbar within sidebar */
+.wdu-sidebar::-webkit-scrollbar {
+  width: 3px;
 }
-
-.pro-upgrade-card .pro-avatar {
-  font-size: 2.5rem;
-  background: rgba(43, 181, 137, 0.2);
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto 1rem;
-  box-shadow: 0 4px 15px rgba(43, 181, 137, 0.2);
-}
-
-.pro-upgrade-card p {
-  color: white;
-  font-size: 0.85rem;
-  line-height: 1.4;
-  margin-bottom: 1rem;
-}
-
-.pro-upgrade-card .btn-upgrade {
-  background: var(--primary);
-  color: white;
-  border: none;
-  padding: 0.75rem 1.2rem;
-  border-radius: 8px;
-  font-weight: 600;
-  width: 100%;
-  cursor: pointer;
-  box-shadow: 0 4px 12px rgba(43, 181, 137, 0.4);
-}
-
-.user-info {
-  text-align: center;
-  width: 100%;
-}
-
-.user-info .user-name {
-  color: white;
-  font-size: 0.95rem;
-  font-weight: 500;
-}
-
-.btn-logout {
-  background: transparent;
-  color: var(--sidebar-text-muted);
-  border: none;
-  cursor: pointer;
-  font-size: 0.85rem;
-  font-weight: 500;
-  transition: all var(--transition-fast);
-  margin-top: 0.5rem;
-}
-
-.btn-logout:hover {
-  color: white;
+.wdu-sidebar::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.1);
 }
 
 /* ===================== LAYOUT ===================== */
@@ -886,26 +809,6 @@ body {
 
 /* ===================== ALERTS ===================== */
 .alert {
-  padding: 0.85rem 1.2rem;
-  border-radius: 10px;
-  margin-bottom: 1rem;
-  font-size: 0.9rem;
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  animation: slideUp 0.3s ease;
-}
-
-.alert.success {
-  background: rgba(16, 185, 129, 0.1);
-  color: var(--success-light);
-  border: 1px solid rgba(16, 185, 129, 0.2);
-}
-
-.alert.error {
-  background: rgba(239, 68, 68, 0.1);
-  color: var(--danger-light);
   border: 1px solid rgba(239, 68, 68, 0.2);
 }
 
@@ -1083,3 +986,29 @@ body {
 .mb-1 { margin-bottom: 0.5rem; }
 .mb-2 { margin-bottom: 1rem; }
 .mb-3 { margin-bottom: 1.5rem; }
+
+/* ===================== PREMIUM ALERTS ===================== */
+.alert {
+  padding: 1.25rem 1.75rem;
+  border-radius: 16px;
+  margin-bottom: 2rem;
+  font-weight: 700;
+  font-size: 0.95rem;
+  display: flex !important;
+  align-items: center;
+  gap: 1rem;
+  animation: slideDownIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  border: none !important;
+  line-height: 1.4;
+}
+
+.alert.success { background: #E6FFFA !important; color: #1E6B5D !important; border-left: 6px solid #2BB589 !important; }
+.alert.error { background: #FFF5F5 !important; color: #9B2C2C !important; border-left: 6px solid #F56565 !important; }
+.alert.warning { background: #FFFAF0 !important; color: #9C4221 !important; border-left: 6px solid #ED8936 !important; }
+
+@keyframes slideDownIn {
+  from { opacity: 0; transform: translateY(-20px); scale: 0.98; }
+  to { opacity: 1; transform: translateY(0); scale: 1; }
+}
+

@@ -76,6 +76,18 @@ public class AuthService {
 
         userRepository.save(user);
 
+        // If STUDENT, also create a Student record
+        if (user.getRole() == Role.STUDENT) {
+            Student student = Student.builder()
+                    .name(request.getName() != null ? request.getName() : request.getUsername())
+                    .email(request.getUsername())
+                    .department(request.getDepartment() != null ? request.getDepartment() : "General")
+                    .year(request.getYear() != null ? request.getYear() : 1)
+                    .section(request.getSection() != null ? request.getSection() : "A")
+                    .build();
+            studentRepository.save(student);
+        }
+
         String token = jwtUtil.generateToken(user);
 
         return LoginResponse.builder()

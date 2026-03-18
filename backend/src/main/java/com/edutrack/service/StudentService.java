@@ -2,8 +2,11 @@ package com.edutrack.service;
 
 import com.edutrack.dto.StudentDTO;
 import com.edutrack.entity.Student;
+import com.edutrack.entity.User;
 import com.edutrack.repository.StudentRepository;
+import com.edutrack.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,6 +17,12 @@ public class StudentService {
     @Autowired
     private StudentRepository studentRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     public Student createStudent(StudentDTO dto) {
         Student student = Student.builder()
                 .name(dto.getName())
@@ -22,7 +31,18 @@ public class StudentService {
                 .year(dto.getYear())
                 .section(dto.getSection())
                 .build();
-        return studentRepository.save(student);
+        Student saved = studentRepository.save(student);
+
+        // Auto-create user login for student if not exists
+        if (!userRepository.existsByUsername(dto.getEmail())) {
+            User user = User.builder()
+                    .username(dto.getEmail())
+                    .password(passwordEncoder.encode("Password@123")) // Default password
+                    .role(com.edutrack.entity.Role.STUDENT)
+                    .build();
+            userRepository.save(user);
+        }
+        return saved;
     }
 
     public List<Student> getAllStudents() {

@@ -18,4 +18,10 @@ public class RegisterRequest {
 
     @NotBlank(message = "Role is required")
     private String role; // ADMIN, TEACHER, STUDENT
+
+    // Optional fields for automated student creation
+    private String name;
+    private String department;
+    private Integer year;
+    private String section;
 }
