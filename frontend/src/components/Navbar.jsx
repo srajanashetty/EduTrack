@@ -51,11 +51,15 @@ const Navbar = () => {
       { path: '/marks', label: 'Marks', icon: <FiFileText /> },
       { path: '/analytics', label: 'Analytics', icon: <FiBarChart2 /> },
       { path: '/reports', label: 'Reports', icon: <FiClipboard /> },
+      { path: '/timetable', label: 'Timetable', icon: <FiCalendar /> },
+      { path: '/exams', label: 'Exams', icon: <FiCalendar /> },
       { path: '/announcements', label: 'Announcements', icon: <FiBell /> },
     );
   } else {
     navItems.push(
       { path: '/dashboard', label: 'Dashboard', icon: <FiHome /> },
+      { path: '/timetable', label: 'My Timetable', icon: <FiCalendar /> },
+      { path: '/exams', label: 'My Exams', icon: <FiCalendar /> },
       { path: '/attendance', label: 'My Attendance', icon: <FiCheckSquare /> },
       { path: '/marks', label: 'My Marks', icon: <FiFileText /> },
       { path: '/announcements', label: 'Announcements', icon: <FiBell /> },

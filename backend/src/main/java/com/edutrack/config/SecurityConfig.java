@@ -47,6 +47,8 @@ public class SecurityConfig {
                 .requestMatchers("/marks/**").hasAnyRole("ADMIN", "TEACHER", "STUDENT")
                 .requestMatchers("/analytics/**").hasAnyRole("ADMIN", "TEACHER")
                 .requestMatchers("/announcements/**").hasAnyRole("ADMIN", "TEACHER", "STUDENT")
+                .requestMatchers("/timetable/**").hasAnyRole("ADMIN", "TEACHER", "STUDENT")
+                .requestMatchers("/exams/**").hasAnyRole("ADMIN", "TEACHER", "STUDENT")
                 .anyRequest().authenticated()
             )
             .sessionManagement(session ->

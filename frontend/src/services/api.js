@@ -83,4 +83,21 @@ export const announcementsAPI = {
   delete: (id) => api.delete(`/announcements/${id}`),
 };
 
+// ===== Timetable APIs =====
+export const timetableAPI = {
+  getAll: () => api.get('/timetable'),
+  getByClass: (params) => api.get('/timetable/class', { params }),
+  create: (data) => api.post('/timetable', data),
+  update: (id, data) => api.put(`/timetable/${id}`, data),
+  delete: (id) => api.delete(`/timetable/${id}`),
+};
+
+// ===== Exams APIs =====
+export const examsAPI = {
+  getAll: () => api.get('/exams'),
+  getByClass: (params) => api.get('/exams/class', { params }),
+  create: (data) => api.post('/exams', data),
+  delete: (id) => api.delete(`/exams/${id}`),
+};
+
 export default api;
