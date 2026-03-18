@@ -24,4 +24,7 @@ public interface MarksRepository extends JpaRepository<Marks, Long> {
 
     @Query("SELECT m.subject, AVG(m.marks) FROM Marks m GROUP BY m.subject")
     List<Object[]> getAverageMarksBySubject();
+
+    @Query("SELECT AVG(m.marks) FROM Marks m WHERE m.student.id = :studentId")
+    Double getAverageMarksForStudent(Long studentId);
 }

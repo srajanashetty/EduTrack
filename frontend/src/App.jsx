@@ -12,6 +12,7 @@ import Reports from './components/Reports';
 import Announcements from './components/Announcements';
 import TimetableManagement from './components/TimetableManagement';
 import ExamManagement from './components/ExamManagement';
+import ProfilePage from './components/ProfilePage';
 import { useAuth } from './context/AuthContext';
 
 const AppLayout = ({ children }) => {
@@ -44,6 +45,7 @@ const AppRoutes = () => {
         <Route path="/announcements" element={<PrivateRoute><Announcements /></PrivateRoute>} />
         <Route path="/timetable" element={<PrivateRoute><TimetableManagement /></PrivateRoute>} />
         <Route path="/exams" element={<PrivateRoute><ExamManagement /></PrivateRoute>} />
+        <Route path="/profile" element={<PrivateRoute><ProfilePage /></PrivateRoute>} />
         <Route path="/attendance" element={<PrivateRoute><AttendanceManagement /></PrivateRoute>} />
         <Route path="/marks" element={<PrivateRoute><MarksUpload /></PrivateRoute>} />
 

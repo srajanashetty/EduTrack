@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "teachers")
+@Table(name = "teacher_details")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -15,6 +15,10 @@ public class Teacher {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @OneToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User user;
+
     @Column(nullable = false)
     private String name;
 
@@ -23,4 +27,11 @@ public class Teacher {
 
     @Column(nullable = false)
     private String department;
+
+    private String subjectsHandled;
+
+    private String experience;
+
+    @Column(nullable = false)
+    private String teacherId;
 }

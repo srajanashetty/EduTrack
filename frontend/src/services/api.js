@@ -100,4 +100,10 @@ export const examsAPI = {
   delete: (id) => api.delete(`/exams/${id}`),
 };
 
+// ===== Profile APIs =====
+export const profileAPI = {
+  get: () => api.get('/api/profile'),
+  update: (data) => api.put('/api/profile', data),
+};
+
 export default api;

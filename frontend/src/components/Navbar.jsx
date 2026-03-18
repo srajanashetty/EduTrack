@@ -3,7 +3,7 @@ import { useAuth } from '../context/AuthContext';
 import {
   FiHome, FiUsers, FiCheckSquare, FiFileText,
   FiBarChart2, FiClipboard, FiBell, FiLogOut,
-  FiShield, FiBook, FiUser
+  FiShield, FiBook, FiUser, FiCalendar
 } from 'react-icons/fi';
 
 const roleConfig = {
@@ -34,7 +34,7 @@ const Navbar = () => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const role = user?.role || 'STUDENT';
-  const config = roleConfig[role] || roleConfig.STUDENT;
+  const config = roleConfig[role.toUpperCase()] || roleConfig.STUDENT;
 
   const handleLogout = () => {
     logout();
@@ -53,15 +53,16 @@ const Navbar = () => {
       { path: '/reports', label: 'Reports', icon: <FiClipboard /> },
       { path: '/timetable', label: 'Timetable', icon: <FiCalendar /> },
       { path: '/exams', label: 'Exams', icon: <FiCalendar /> },
+      { path: '/profile', label: 'Profile Settings', icon: <FiUser /> },
       { path: '/announcements', label: 'Announcements', icon: <FiBell /> },
     );
   } else {
     navItems.push(
-      { path: '/dashboard', label: 'Dashboard', icon: <FiHome /> },
       { path: '/timetable', label: 'My Timetable', icon: <FiCalendar /> },
       { path: '/exams', label: 'My Exams', icon: <FiCalendar /> },
       { path: '/attendance', label: 'My Attendance', icon: <FiCheckSquare /> },
       { path: '/marks', label: 'My Marks', icon: <FiFileText /> },
+      { path: '/profile', label: 'My Profile', icon: <FiUser /> },
       { path: '/announcements', label: 'Announcements', icon: <FiBell /> },
     );
   }
@@ -73,7 +74,11 @@ const Navbar = () => {
     <nav className="wdu-sidebar">
       <div className="sidebar-top">
         <NavLink to="/dashboard" className="brand">
-          <div className="brand-icon">E</div>
+          <div className="brand-icon" style={{
+            width: '32px', height: '32px', background: 'var(--primary)',
+            borderRadius: '8px', display: 'flex', alignItems: 'center',
+            justifyContent: 'center', color: '#fff', fontWeight: 800
+          }}>E</div>
           <span className="brand-text">EduTrack</span>
         </NavLink>
 
@@ -92,64 +97,58 @@ const Navbar = () => {
         </ul>
       </div>
 
-      {/* Improved User Section */}
-      <div className="sidebar-bottom" style={{ padding: '1rem' }}>
+      <div className="sidebar-bottom">
         <div style={{
           background: 'rgba(255,255,255,0.05)',
           border: '1px solid rgba(255,255,255,0.1)',
-          borderRadius: '12px',
-          padding: '0.9rem 1rem',
+          borderRadius: '16px',
+          padding: '1rem',
           display: 'flex',
           flexDirection: 'column',
-          gap: '0.75rem',
+          gap: '1rem',
+          margin: '0 0.5rem'
         }}>
-          {/* User Identity Row */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-            {/* Avatar circle */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
             <div style={{
-              width: '40px', height: '40px', borderRadius: '50%',
-              background: `linear-gradient(135deg, ${config.color}, ${config.color}88)`,
+              width: '42px', height: '42px', borderRadius: '12px',
+              background: `linear-gradient(135deg, ${config.color}, ${config.color}99)`,
               display: 'flex', alignItems: 'center', justifyContent: 'center',
-              fontSize: '1rem', fontWeight: 700, color: '#fff', flexShrink: 0,
-              boxShadow: `0 0 0 2px ${config.color}44`,
+              fontSize: '1.1rem', fontWeight: 800, color: '#fff',
+              boxShadow: `0 4px 12px ${config.color}33`,
             }}>
               {initials}
             </div>
-
-            <div style={{ overflow: 'hidden' }}>
+            <div style={{ overflow: 'hidden', flex: 1 }}>
               <div style={{
-                color: 'var(--text-primary)', fontWeight: 700,
-                fontSize: '0.88rem', whiteSpace: 'nowrap',
-                overflow: 'hidden', textOverflow: 'ellipsis',
+                color: '#fff', fontWeight: 700, fontSize: '0.9rem',
+                whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis'
               }}>
                 {user?.username}
               </div>
-              {/* Role badge */}
               <div style={{
                 display: 'inline-flex', alignItems: 'center', gap: '0.3rem',
                 background: config.bg, color: config.color,
-                padding: '0.15rem 0.5rem', borderRadius: '999px',
-                fontSize: '0.7rem', fontWeight: 700, marginTop: '0.2rem',
+                padding: '0.1rem 0.6rem', borderRadius: '6px',
+                fontSize: '0.7rem', fontWeight: 700, marginTop: '0.2rem'
               }}>
                 {config.avatar} {config.label}
               </div>
             </div>
           </div>
-
-          {/* Logout Button */}
+          
           <button
             onClick={handleLogout}
             style={{
+              padding: '0.6rem', borderRadius: '10px', border: '1px solid rgba(239,68,68,0.2)',
+              background: 'rgba(239,68,68,0.08)', color: '#ef4444',
+              fontSize: '0.85rem', fontWeight: 600, cursor: 'pointer',
               display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
-              background: 'rgba(239,68,68,0.12)', color: '#ef4444',
-              border: '1px solid rgba(239,68,68,0.25)', borderRadius: '8px',
-              padding: '0.55rem', cursor: 'pointer', fontSize: '0.83rem',
-              fontWeight: 600, transition: 'all 0.2s ease', width: '100%',
+              transition: 'all 0.2s ease'
             }}
-            onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(239,68,68,0.25)'; }}
-            onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(239,68,68,0.12)'; }}
+            onMouseEnter={e => e.currentTarget.style.background = 'rgba(239,68,68,0.15)'}
+            onMouseLeave={e => e.currentTarget.style.background = 'rgba(239,68,68,0.08)'}
           >
-            <FiLogOut size={14} /> Logout
+            <FiLogOut size={14} /> Log Out
           </button>
         </div>
       </div>
