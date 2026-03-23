@@ -21,9 +21,15 @@ public class StudentService {
     private UserRepository userRepository;
 
     @Autowired
+    private ActivityService activityService;
+
+    @Autowired
     private PasswordEncoder passwordEncoder;
 
     public Student createStudent(StudentDTO dto) {
+        if (studentRepository.findByEmail(dto.getEmail()).isPresent()) {
+            throw new RuntimeException("Student with this email already exists: " + dto.getEmail());
+        }
         Student student = Student.builder()
                 .name(dto.getName())
                 .email(dto.getEmail())
@@ -32,6 +38,7 @@ public class StudentService {
                 .section(dto.getSection())
                 .build();
         Student saved = studentRepository.save(student);
+        activityService.log("student", "New student enrolled: " + saved.getName() + " in " + saved.getDepartment());
 
         // Auto-create user login for student if not exists
         if (!userRepository.existsByUsername(dto.getEmail())) {

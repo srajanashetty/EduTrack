@@ -252,9 +252,14 @@ const AttendanceManagement = () => {
                 </table>
               </div>
               {(user?.role === 'ADMIN' || user?.role === 'TEACHER') && (
-                <div style={{ marginTop: '1.5rem', display: 'flex', justifyContent: 'flex-end' }}>
-                  <button className="btn-primary" onClick={handleSubmitAttendance} style={{ width: 'auto', padding: '0.7rem 2rem' }}>
-                    <FiCheckSquare style={{ marginRight: '0.5rem' }} /> Submit Attendance
+                <div style={{ marginTop: '2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: '#f8fafc', padding: '1.5rem', borderRadius: '12px', border: '1px solid var(--border-color)' }}>
+                  <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+                    <span style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--text-secondary)' }}>Bulk Actions:</span>
+                    <button className="btn-secondary" onClick={() => handleMarkAll('PRESENT')} style={{ fontSize: '0.8rem', padding: '0.5rem 1rem' }}>Mark All Present</button>
+                    <button className="btn-secondary" onClick={() => handleMarkAll('ABSENT')} style={{ fontSize: '0.8rem', padding: '0.5rem 1rem' }}>Clear All</button>
+                  </div>
+                  <button className="btn-primary" onClick={handleSubmitAttendance} style={{ width: 'auto', padding: '0.8rem 2.5rem' }}>
+                    <FiCheckSquare style={{ marginRight: '0.5rem' }} /> Confirm & Submit
                   </button>
                 </div>
               )}

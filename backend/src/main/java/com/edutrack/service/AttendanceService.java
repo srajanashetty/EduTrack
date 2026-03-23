@@ -21,7 +21,16 @@ public class AttendanceService {
     @Autowired
     private StudentRepository studentRepository;
 
+    @Autowired
+    private ActivityService activityService;
+
     public Attendance markAttendance(AttendanceRequest request) {
+        if (attendanceRepository.existsByStudentIdAndDate(request.getStudentId(), request.getDate())) {
+            // Already marked, update status if different or just ignore
+            // For now, let's keep it simple: no duplicates
+            return null;
+        }
+
         Student student = studentRepository.findById(request.getStudentId())
                 .orElseThrow(() -> new RuntimeException(
                         "Student not found with id: " + request.getStudentId()));
@@ -36,9 +45,14 @@ public class AttendanceService {
     }
 
     public List<Attendance> markBulkAttendance(List<AttendanceRequest> requests) {
-        return requests.stream()
+        List<Attendance> saved = requests.stream()
                 .map(this::markAttendance)
+                .filter(a -> a != null)
                 .toList();
+        if (!saved.isEmpty()) {
+            activityService.log("attendance", "Attendance marked for " + saved.size() + " students on " + requests.get(0).getDate());
+        }
+        return saved;
     }
 
     public List<Attendance> getAttendanceByStudentId(Long studentId) {

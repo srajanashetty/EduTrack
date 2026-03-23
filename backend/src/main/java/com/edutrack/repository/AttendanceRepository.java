@@ -13,6 +13,7 @@ import java.util.List;
 public interface AttendanceRepository extends JpaRepository<Attendance, Long> {
 
     List<Attendance> findByStudentId(Long studentId);
+    boolean existsByStudentIdAndDate(Long studentId, LocalDate date);
 
     List<Attendance> findByDate(LocalDate date);
 

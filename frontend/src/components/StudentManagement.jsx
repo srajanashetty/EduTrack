@@ -172,54 +172,58 @@ const StudentManagement = () => {
 
       {showModal && (
         <div className="modal-overlay" onClick={() => setShowModal(false)}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <h2>{editingStudent ? 'Edit Student' : 'Add New Student'}</h2>
-            <form onSubmit={handleSubmit}>
-              <div className="form-group">
-                <label>Full Name</label>
-                <input className="form-input" type="text" placeholder="Enter student name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} required />
-              </div>
-              <div className="form-group">
-                <label>Email Address</label>
-                <input className="form-input" type="email" placeholder="Enter email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} required />
+          <div className="modal-content" onClick={(e) => e.stopPropagation()} style={{ maxWidth: '600px' }}>
+            <div className="card-header">
+              <h2 style={{ fontFamily: 'var(--font-serif)', margin: 0 }}>{editingStudent ? 'Update Scholar Record' : 'Enroll New Scholar'}</h2>
+            </div>
+            <form onSubmit={handleSubmit} style={{ marginTop: '1.5rem' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
+                <div className="form-group">
+                  <label>Full Name</label>
+                  <input className="form-input" type="text" placeholder="e.g. Alexander Pierce" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} required />
+                </div>
+                <div className="form-group">
+                  <label>Email Address</label>
+                  <input className="form-input" type="email" placeholder="student@university.edu" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} required />
+                </div>
               </div>
               <div className="form-group">
                 <label>Department</label>
                 <select className="form-select" value={form.department} onChange={(e) => setForm({ ...form, department: e.target.value })} required>
                   <option value="">Select Department</option>
-                  <option value="CSE">Computer Science</option>
+                  <option value="CSE">Computer Science & Engineering</option>
                   <option value="ECE">Electronics & Communication</option>
-                  <option value="ME">Mechanical</option>
-                  <option value="CE">Civil</option>
-                  <option value="EE">Electrical</option>
+                  <option value="ME">Mechanical Engineering</option>
+                  <option value="CE">Civil Engineering</option>
                   <option value="IT">Information Technology</option>
                 </select>
               </div>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
                 <div className="form-group">
-                  <label>Year</label>
+                  <label>Academic Year</label>
                   <select className="form-select" value={form.year} onChange={(e) => setForm({ ...form, year: e.target.value })} required>
                     <option value="">Select Year</option>
-                    <option value="1">1st Year</option>
-                    <option value="2">2nd Year</option>
-                    <option value="3">3rd Year</option>
-                    <option value="4">4th Year</option>
+                    <option value="1">1st Year (Freshman)</option>
+                    <option value="2">2nd Year (Sophomore)</option>
+                    <option value="3">3rd Year (Junior)</option>
+                    <option value="4">4th Year (Senior)</option>
                   </select>
                 </div>
                 <div className="form-group">
                   <label>Section</label>
                   <select className="form-select" value={form.section} onChange={(e) => setForm({ ...form, section: e.target.value })} required>
                     <option value="">Select Section</option>
-                    <option value="A">A</option>
-                    <option value="B">B</option>
-                    <option value="C">C</option>
-                    <option value="D">D</option>
+                    <option value="A">Section A</option>
+                    <option value="B">Section B</option>
+                    <option value="C">Section C</option>
                   </select>
                 </div>
               </div>
-              <div className="modal-actions">
-                <button type="button" className="btn-secondary" onClick={() => setShowModal(false)}>Cancel</button>
-                <button type="submit" className="btn-success">{editingStudent ? 'Update' : 'Add Student'}</button>
+              <div className="modal-actions" style={{ marginTop: '2rem' }}>
+                <button type="button" className="btn-secondary" onClick={() => setShowModal(false)}>Discard</button>
+                <button type="submit" className="btn-primary" style={{ width: 'auto', padding: '0.75rem 2.5rem' }}>
+                  {editingStudent ? 'Save Changes' : 'Enroll Student'}
+                </button>
               </div>
             </form>
           </div>

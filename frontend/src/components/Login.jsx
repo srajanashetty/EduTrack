@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { FiBookOpen, FiStar, FiAward, FiArrowRight, FiShield, FiUser, FiMail, FiLock } from 'react-icons/fi';
 
 const Login = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -37,76 +38,120 @@ const Login = () => {
   };
 
   return (
-    <div className="login-page">
-      <div className="login-card">
-        <div className="logo-section">
-          <div className="logo-icon">W</div>
-          <h2>edutrack</h2>
-          <p className="subtitle">Student Performance & Attendance Analytics</p>
+    <div className="login-split-container">
+      {/* Left Section: Branding & Features */}
+      <div className="login-left-panel">
+        <div className="branding-top">
+          <div className="logo-wrap">
+            <span className="logo-icon-main">E</span>
+            <span className="logo-text-main">EduTrack</span>
+          </div>
         </div>
 
-        <div className="tab-switcher">
-          <button
-            className={`tab-btn ${isLogin ? 'active' : ''}`}
-            onClick={() => { setIsLogin(true); setError(''); setSuccess(''); }}
-          >
-            Sign In
-          </button>
-          <button
-            className={`tab-btn ${!isLogin ? 'active' : ''}`}
-            onClick={() => { setIsLogin(false); setError(''); setSuccess(''); }}
-          >
-            Register
-          </button>
-        </div>
+        <div className="hero-content">
+          <h1 className="hero-title">
+            <span className="highlight-text">Empower Education,</span> <br />
+            Simplify Management <span className="sparkle">✨</span>
+          </h1>
 
-        {error && <div className="alert error">⚠️ {error}</div>}
-        {success && <div className="alert success">✅ {success}</div>}
-
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label>Username</label>
-            <input
-              type="text"
-              className="form-input"
-              placeholder="Enter username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              required
-            />
-          </div>
-
-          <div className="form-group">
-            <label>Password</label>
-            <input
-              type="password"
-              className="form-input"
-              placeholder="Enter password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </div>
-
-          {!isLogin && (
-            <div className="form-group">
-              <label>Role</label>
-              <select
-                className="form-select"
-                value={role}
-                onChange={(e) => setRole(e.target.value)}
-              >
-                <option value="STUDENT">Student</option>
-                <option value="TEACHER">Teacher</option>
-                <option value="ADMIN">Admin</option>
-              </select>
+          <div className="feature-cards-wrap">
+            <div className="login-feature-card">
+              <div className="f-icon-box"><FiAward /></div>
+              <div className="f-text">
+                <h3>Track Achievement <span className="sparkle-mini">✨</span></h3>
+                <p>Monitor academic progress with detailed analytical insights</p>
+              </div>
             </div>
-          )}
 
-          <button type="submit" className="btn-primary" disabled={loading}>
-            {loading ? 'Please wait...' : isLogin ? 'Sign In' : 'Create Account'}
-          </button>
-        </form>
+            <div className="login-feature-card">
+              <div className="f-icon-box"><FiShield /></div>
+              <div className="f-text">
+                <h3>Secure Access</h3>
+                <p>Role-based authentication for students and faculty</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        {/* Decorative elements */}
+        <div className="floating-shape s1"></div>
+        <div className="floating-shape s2"></div>
+      </div>
+
+      {/* Right Section: Form */}
+      <div className="login-right-panel">
+        <div className="login-form-box">
+          <div className="form-header">
+            <h2>{isLogin ? 'Welcome Back' : 'Join EduTrack'}</h2>
+            <p>Enter your credentials to continue your academic journey with EduTrack</p>
+          </div>
+
+          <div className="mode-toggle">
+            <button 
+              className={isLogin ? 'active' : ''} 
+              onClick={() => { setIsLogin(true); setError(''); setSuccess(''); }}
+            >
+              Sign In
+            </button>
+            <button 
+              className={!isLogin ? 'active' : ''} 
+              onClick={() => { setIsLogin(false); setError(''); setSuccess(''); }}
+            >
+              Register
+            </button>
+          </div>
+
+          {error && <div className="login-error-msg">⚠️ {error}</div>}
+          {success && <div className="login-success-msg">✅ {success}</div>}
+
+          <form onSubmit={handleSubmit} className="actual-form">
+            <div className="input-group-modern">
+              <label><FiUser /> Username</label>
+              <input
+                type="text"
+                placeholder="Enter your username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                required
+              />
+            </div>
+
+            <div className="input-group-modern">
+              <label><FiLock /> Password</label>
+              <input
+                type="password"
+                placeholder="Enter your password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </div>
+
+            {!isLogin && (
+              <div className="input-group-modern">
+                <label><FiShield /> Select Role</label>
+                <select value={role} onChange={(e) => setRole(e.target.value)}>
+                  <option value="STUDENT">Student Scholar</option>
+                  <option value="TEACHER">Faculty Member</option>
+                  <option value="ADMIN">Administrator</option>
+                </select>
+              </div>
+            )}
+
+            <button type="submit" className="login-submit-btn" disabled={loading}>
+              {loading ? 'Processing...' : (isLogin ? 'Continue' : 'Create Account')}
+              {!loading && <FiArrowRight />}
+            </button>
+          </form>
+
+          <div className="form-footer">
+            {isLogin ? (
+              <p>Don't have an account? <span onClick={() => setIsLogin(false)}>Register here</span></p>
+            ) : (
+              <p>Already have an account? <span onClick={() => setIsLogin(true)}>Sign in here</span></p>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );

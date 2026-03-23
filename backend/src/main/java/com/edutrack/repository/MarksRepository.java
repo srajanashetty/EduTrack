@@ -11,6 +11,7 @@ import java.util.List;
 public interface MarksRepository extends JpaRepository<Marks, Long> {
 
     List<Marks> findByStudentId(Long studentId);
+    boolean existsByStudentIdAndSubject(Long studentId, String subject);
 
     @Query("SELECT m.student.id, m.student.name, AVG(m.marks) " +
            "FROM Marks m GROUP BY m.student.id, m.student.name " +

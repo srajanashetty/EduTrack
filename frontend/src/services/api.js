@@ -106,4 +106,9 @@ export const profileAPI = {
   update: (data) => api.put('/api/profile', data),
 };
 
+// ===== Activities APIs =====
+export const activitiesAPI = {
+  getRecent: () => api.get('/activities'),
+};
+
 export default api;
