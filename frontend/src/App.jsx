@@ -10,6 +10,7 @@ import MarksUpload from './components/MarksUpload';
 import AnalyticsDashboard from './components/AnalyticsDashboard';
 import Reports from './components/Reports';
 import Announcements from './components/Announcements';
+import Updates from './components/Updates';
 import TimetableManagement from './components/TimetableManagement';
 import ExamManagement from './components/ExamManagement';
 import ProfilePage from './components/ProfilePage';
@@ -43,6 +44,7 @@ const AppRoutes = () => {
         {/* All authenticated users */}
         <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
         <Route path="/announcements" element={<PrivateRoute><Announcements /></PrivateRoute>} />
+        <Route path="/updates" element={<PrivateRoute><Updates /></PrivateRoute>} />
         <Route path="/timetable" element={<PrivateRoute><TimetableManagement /></PrivateRoute>} />
         <Route path="/exams" element={<PrivateRoute><ExamManagement /></PrivateRoute>} />
         <Route path="/profile" element={<PrivateRoute><ProfilePage /></PrivateRoute>} />

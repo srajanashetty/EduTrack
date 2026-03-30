@@ -63,7 +63,7 @@ const Announcements = () => {
     setSubmitting(true);
     try {
       await announcementsAPI.create(form);
-      setForm({ title: '', content: '', priority: 'MEDIUM' });
+      setForm({ title: '', content: '', priority: 'MEDIUM', category: 'GENERAL' });
       setShowForm(false);
       showMsg('success', 'Announcement posted successfully!');
       fetchAnnouncements();
@@ -135,17 +135,31 @@ const Announcements = () => {
                 style={{ resize: 'vertical', fontFamily: 'inherit' }}
               />
             </div>
-            <div className="form-group">
-              <label>Priority</label>
-              <select
-                className="form-select"
-                value={form.priority}
-                onChange={(e) => setForm({ ...form, priority: e.target.value })}
-              >
-                <option value="HIGH">🔴 Urgent</option>
-                <option value="MEDIUM">🟡 Important</option>
-                <option value="LOW">🔵 Info</option>
-              </select>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+              <div className="form-group">
+                <label>Category</label>
+                <select
+                  className="form-select"
+                  value={form.category}
+                  onChange={(e) => setForm({ ...form, category: e.target.value })}
+                >
+                  <option value="GENERAL">📢 General Notice</option>
+                  <option value="EXAM">📝 Exam Notification</option>
+                  <option value="CLASS">📅 Class Update</option>
+                </select>
+              </div>
+              <div className="form-group">
+                <label>Priority</label>
+                <select
+                  className="form-select"
+                  value={form.priority}
+                  onChange={(e) => setForm({ ...form, priority: e.target.value })}
+                >
+                  <option value="HIGH">🔴 Urgent</option>
+                  <option value="MEDIUM">🟡 Important</option>
+                  <option value="LOW">🔵 Info</option>
+                </select>
+              </div>
             </div>
             <div style={{ display: 'flex', gap: '1rem', justifyContent: 'flex-end' }}>
               <button type="button" className="btn-secondary" onClick={() => setShowForm(false)}>Cancel</button>
@@ -188,8 +202,16 @@ const Announcements = () => {
               >
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '1rem', padding: '1rem 1.25rem 0.5rem' }}>
                   <div style={{ flex: 1 }}>
-                    {/* Priority badge + title */}
+                    {/* Category + Priority badge + title */}
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', flexWrap: 'wrap', marginBottom: '0.5rem' }}>
+                      <span style={{
+                        display: 'inline-flex', alignItems: 'center', gap: '0.3rem',
+                        background: 'rgba(55,65,81,0.08)', color: 'var(--text-secondary)',
+                        padding: '0.2rem 0.7rem', borderRadius: '49px',
+                        fontSize: '0.7rem', fontWeight: 800, textTransform: 'uppercase'
+                      }}>
+                        {ann.category || 'GENERAL'}
+                      </span>
                       <span style={{
                         display: 'inline-flex', alignItems: 'center', gap: '0.3rem',
                         background: priority.bg, color: priority.color,

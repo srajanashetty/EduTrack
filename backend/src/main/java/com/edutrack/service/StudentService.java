@@ -56,6 +56,13 @@ public class StudentService {
         return studentRepository.findAll();
     }
 
+    public List<Student> getStudentsBySection(String section) {
+        if (section == null || section.isEmpty() || section.equalsIgnoreCase("All")) {
+            return getAllStudents();
+        }
+        return studentRepository.findBySection(section);
+    }
+
     public Student getStudentById(Long id) {
         return studentRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Student not found with id: " + id));

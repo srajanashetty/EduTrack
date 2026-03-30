@@ -36,8 +36,8 @@ public class StudentController {
 
     @GetMapping
     @PreAuthorize("hasAnyRole('ADMIN', 'TEACHER')")
-    public ResponseEntity<List<Student>> getAllStudents() {
-        return ResponseEntity.ok(studentService.getAllStudents());
+    public ResponseEntity<List<Student>> getAllStudents(@RequestParam(required = false) String section) {
+        return ResponseEntity.ok(studentService.getStudentsBySection(section));
     }
 
     @GetMapping("/{id}")

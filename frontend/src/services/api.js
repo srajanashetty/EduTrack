@@ -25,6 +25,8 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   (response) => response,
   (error) => {
+    // Only redirect on 401 (truly unauthenticated / token expired).
+    // 403 means authenticated but not authorized (valid RBAC) — do NOT logout.
     if (error.response?.status === 401) {
       localStorage.removeItem('token');
       localStorage.removeItem('user');
@@ -42,12 +44,19 @@ export const authAPI = {
 
 // ===== Student APIs =====
 export const studentAPI = {
-  getAll: () => api.get('/students'),
+  getAll: (section) => api.get(section ? `/students?section=${section}` : '/students'),
   getById: (id) => api.get(`/students/${id}`),
   getMe: () => api.get('/students/me'),
   create: (data) => api.post('/students', data),
   update: (id, data) => api.put(`/students/${id}`, data),
   delete: (id) => api.delete(`/students/${id}`),
+};
+
+// ===== Subject APIs =====
+export const subjectsAPI = {
+  getSubjects: (section) => api.get(section ? `/subjects?section=${section}` : '/subjects'),
+  addSubject: (data) => api.post('/subjects', data),
+  deleteSubject: (id) => api.delete(`/subjects/${id}`)
 };
 
 
@@ -109,6 +118,14 @@ export const profileAPI = {
 // ===== Activities APIs =====
 export const activitiesAPI = {
   getRecent: () => api.get('/activities'),
+};
+
+// ===== Updates APIs =====
+export const updatesAPI = {
+  getAll: () => api.get('/updates'),
+  getRecent: (limit = 5) => api.get(`/updates/recent?limit=${limit}`),
+  create: (data) => api.post('/updates', data),
+  delete: (id) => api.delete(`/updates/${id}`),
 };
 
 export default api;

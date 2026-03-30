@@ -973,6 +973,40 @@ h1, h2, h3, h4, h5, h6, .brand, .page-header h1 {
   margin-top: 0.25rem;
 }
 
+/* ===================== TAB SWITCHER ===================== */
+.tab-switcher {
+  display: flex;
+  background: var(--bg-input);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 0.6rem 1rem;
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-align: center;
+  font-family: var(--font-sans);
+}
+
+.tab-btn:hover {
+  background: var(--bg-card-hover);
+  color: var(--text-primary);
+}
+
+.tab-btn.active {
+  background: var(--primary);
+  color: white;
+}
+
 /* ===================== MODAL ===================== */
 .modal-overlay {
   position: fixed;

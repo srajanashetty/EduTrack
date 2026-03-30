@@ -5,12 +5,12 @@ import lombok.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "announcements")
+@Table(name = "updates")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Announcement {
+public class Update {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,26 +19,19 @@ public class Announcement {
     @Column(nullable = false)
     private String title;
 
-    @Column(nullable = false, length = 2000)
-    private String content;
+    @Column(nullable = false, length = 1000)
+    private String message;
 
     @Column(nullable = false)
-    private String postedBy;   // username of poster
-
-    @Column(nullable = false)
-    private String postedByRole; // ADMIN or TEACHER
+    private String type; // alert, warning, info
 
     @Column(nullable = false)
     private LocalDateTime createdAt;
 
-    @Column
-    private String priority; // HIGH, MEDIUM, LOW
-
-    @Column
-    private String category; // GENERAL, EXAM, CLASS
-
     @PrePersist
     public void prePersist() {
-        this.createdAt = LocalDateTime.now();
+        if (this.createdAt == null) {
+            this.createdAt = LocalDateTime.now();
+        }
     }
 }

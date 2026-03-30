@@ -42,13 +42,16 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/auth/**").permitAll()
                 .requestMatchers("/students/me").hasAnyRole("ADMIN", "TEACHER", "STUDENT")
-                .requestMatchers("/students/**").hasAnyRole("ADMIN", "TEACHER")
+                .requestMatchers("/students", "/students/**").hasAnyRole("ADMIN", "TEACHER")
                 .requestMatchers("/attendance/**").hasAnyRole("ADMIN", "TEACHER", "STUDENT")
                 .requestMatchers("/marks/**").hasAnyRole("ADMIN", "TEACHER", "STUDENT")
                 .requestMatchers("/analytics/**").hasAnyRole("ADMIN", "TEACHER")
                 .requestMatchers("/announcements/**").hasAnyRole("ADMIN", "TEACHER", "STUDENT")
                 .requestMatchers("/timetable/**").hasAnyRole("ADMIN", "TEACHER", "STUDENT")
                 .requestMatchers("/exams/**").hasAnyRole("ADMIN", "TEACHER", "STUDENT")
+                .requestMatchers("/api/profile", "/api/profile/**").hasAnyRole("ADMIN", "TEACHER", "STUDENT")
+                .requestMatchers("/subjects", "/subjects/**").hasAnyRole("ADMIN", "TEACHER", "STUDENT")
+                .requestMatchers("/updates/**").hasAnyRole("ADMIN", "TEACHER", "STUDENT")
                 .anyRequest().authenticated()
             )
             .sessionManagement(session ->
