@@ -18,7 +18,7 @@ The backend connects to TiDB Cloud automatically using the credentials baked int
 ### Option A — Use the launch script (easiest)
 1. Open a terminal in VS Code and navigate to the backend folder:
    ```powershell
-   cd c:\Users\sraja\OneDrive\Desktop\student\backend
+   cd backend
    ```
 2. Run the startup script:
    ```powershell
@@ -27,7 +27,7 @@ The backend connects to TiDB Cloud automatically using the credentials baked int
 
 ### Option B — Manual command (all on one line)
 ```powershell
-$env:JAVA_HOME="C:\Users\sraja\OneDrive\Desktop\student\backend\jdk-21.0.2"; `
+$env:JAVA_HOME=".\jdk-21.0.2"; `
 $env:DB_URL="jdbc:mysql://gateway01.ap-southeast-1.prod.aws.tidbcloud.com:4000/test?ssl-mode=REQUIRED&allowPublicKeyRetrieval=true&serverTimezone=UTC"; `
 $env:DB_USERNAME="2CX5dYVXxEY8CVP.root"; `
 $env:DB_PASSWORD="FLbz6SbBeuNb790R"; `
@@ -43,7 +43,7 @@ mvn spring-boot:run
 1. Open a **second** terminal in VS Code.
 2. Navigate to the frontend:
    ```powershell
-   cd c:\Users\sraja\OneDrive\Desktop\student\frontend
+   cd frontend
    ```
 3. Install the required Node modules (do this only the first time):
    ```powershell
