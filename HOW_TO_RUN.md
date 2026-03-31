@@ -1,37 +1,47 @@
-# edutrack - How to Run
+# EduTrack - How to Run
 
-This project consists of a **Spring Boot Backend** and a **React Frontend**. Follow these steps to start both.
+This project consists of a **Spring Boot Backend** and a **React Frontend**.
+The database is hosted on **TiDB Cloud** (public cloud MySQL) — no local MySQL installation needed.
 
 ## Prerequisites
 
-- **MySQL Server** must be running on your machine.
-- Your MySQL password is configured as `srajana@2611`. 
+- **Java 21** is bundled in the `backend/jdk-21.0.2` folder (no system Java needed).
+- **Maven** (`mvn`) must be available in your system PATH.
+- **Node.js** must be installed for the frontend.
 
 ---
 
-## 1. Start the Backend
+## 1. Start the Backend (with TiDB Cloud)
 
-Because the `lombok` dependency does not currently support Java 25 (which is the system-wide Java version installed on your device), you must run the backend using the embedded **Java 21** that was downloaded into the backend folder (`jdk-21.0.2`).
+The backend connects to TiDB Cloud automatically using the credentials baked into `application.properties`.
 
-1. Open a new terminal in VS Code (or PowerShell).
-2. Change your directory to the `backend` folder:
+### Option A — Use the launch script (easiest)
+1. Open a terminal in VS Code and navigate to the backend folder:
    ```powershell
    cd c:\Users\sraja\OneDrive\Desktop\student\backend
    ```
-3. Run the following command (all on one line) to temporarily point your terminal to Java 21 and start the Spring Boot server:
+2. Run the startup script:
    ```powershell
-   $env:JAVA_HOME="C:\Users\sraja\OneDrive\Desktop\student\backend\jdk-21.0.2"; mvn spring-boot:run
+   .\start.ps1
    ```
-4. Wait for it to say `Started edutrackApplication in X seconds` on port `8080`. Leave this terminal open!
+
+### Option B — Manual command (all on one line)
+```powershell
+$env:JAVA_HOME="C:\Users\sraja\OneDrive\Desktop\student\backend\jdk-21.0.2"; `
+$env:DB_URL="jdbc:mysql://gateway01.ap-southeast-1.prod.aws.tidbcloud.com:4000/test?ssl-mode=REQUIRED&allowPublicKeyRetrieval=true&serverTimezone=UTC"; `
+$env:DB_USERNAME="2CX5dYVXxEY8CVP.root"; `
+$env:DB_PASSWORD="FLbz6SbBeuNb790R"; `
+mvn spring-boot:run
+```
+
+3. Wait for: `Started EdutrackApplication in X seconds` on port **8080**. Leave this terminal open!
 
 ---
 
 ## 2. Start the Frontend
 
-Once the backend is running, you need to spin up the React application.
-
-1. Open a **second** terminal window in VS Code (click the `+` button in the terminal panel).
-2. Change your directory to the `frontend` folder:
+1. Open a **second** terminal in VS Code.
+2. Navigate to the frontend:
    ```powershell
    cd c:\Users\sraja\OneDrive\Desktop\student\frontend
    ```
@@ -39,5 +49,16 @@ Once the backend is running, you need to spin up the React application.
    ```powershell
    npm run dev
    ```
-4. The frontend will start locally. You can access the app by opening your browser and going to:
-   **http://localhost:5173**
+4. Open your browser and go to: **http://localhost:5173**
+
+---
+
+## Database Info
+
+| Property | Value |
+|---|---|
+| Provider | TiDB Cloud (AWS ap-southeast-1) |
+| Host | gateway01.ap-southeast-1.prod.aws.tidbcloud.com |
+| Port | 4000 |
+| Database | test |
+| Username | 2CX5dYVXxEY8CVP.root |
