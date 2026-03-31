@@ -45,11 +45,15 @@ mvn spring-boot:run
    ```powershell
    cd c:\Users\sraja\OneDrive\Desktop\student\frontend
    ```
-3. Run the development server:
+3. Install the required Node modules (do this only the first time):
+   ```powershell
+   npm install
+   ```
+4. Run the development server:
    ```powershell
    npm run dev
    ```
-4. Open your browser and go to: **http://localhost:5173**
+5. Open your browser and go to: **http://localhost:5173**
 
 ---
 
